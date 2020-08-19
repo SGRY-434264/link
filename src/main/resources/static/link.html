@@ -9,11 +9,11 @@
 <body>
 <div id="link">
     <form id="postLink">
-        <input type="text" v-model="long_url"/>
+        原地址:<input type="text" v-model="long_url"/>
         </br>
-        <input type="text" v-model="short_url"/>
     </form>
     <button v-on:click="btnClick">转换</button>
+    新地址:<p>{{short_url}}</p>
 </div>
 <script>
     const link = new Vue({
@@ -25,8 +25,7 @@
         methods: {
             btnClick: function () {
                 axios.post('/link/convert', {
-                    long_url: this.long_url,
-                    short_url: this.short_url
+                    long_url: this.long_url
                 })
                     .then((response) => {
                         alert("转换成功");

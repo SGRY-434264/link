@@ -22,7 +22,7 @@ public class LinkServiceImpl implements LinkService {
         String long_url = link.getLong_url();
         String s = new StringBuilder().append(System.currentTimeMillis()).append(long_url).toString();
         String encrypt = MD5Util.encrypt(s);
-        link.setShort_url(encrypt.substring(0, 6));
+        link.setShort_url(encrypt.substring(0, 8));
         linkMapper.addLink(link);
         return link.getShort_url();
     }
