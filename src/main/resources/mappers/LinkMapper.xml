@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edu.linkconvert.mapper.LinkMapper">
+    <insert id="addLink" useGeneratedKeys="true">
+        insert into link
+        values (null, #{long_url}, #{short_url})
+    </insert>
+    <select id="getLongLink" resultType="com.edu.linkconvert.entity.Link">
+        select * from link where short_url=#{short_url}
+    </select>
+</mapper>

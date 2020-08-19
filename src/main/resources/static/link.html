@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div id="link">
+    <form id="postLink">
+        <input type="text" v-model="long_url"/>
+        </br>
+        <input type="text" v-model="short_url"/>
+    </form>
+    <button v-on:click="btnClick">转换</button>
+</div>
+<script>
+    const link = new Vue({
+        el: '#link',
+        data: {
+            long_url: '',
+            short_url: ''
+        },
+        methods: {
+            btnClick: function () {
+                axios.post('/link/convert', {
+                    long_url: this.long_url,
+                    short_url: this.short_url
+                })
+                    .then((response) => {
+                        alert("转换成功");
+                        this.short_url = response.data;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+        }
+    });
+</script>
+</body>
+</html>
